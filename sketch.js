@@ -35,7 +35,7 @@ var restart;
 
 function preload(){
     soundFormats('mp3','wav','ogg');
-    sound = loadSound('assets/falling.wav');
+    /*sound = loadSound('assets/falling.wav');
     sound.setVolume(0.1);
     
     item = loadSound('assets/item.ogg');
@@ -54,6 +54,7 @@ function preload(){
     //load your sounds here
     jumpSound = loadSound('assets/jump.wav');
     jumpSound.setVolume(0.1);
+    */
     
 }
 function touchStarted() {
@@ -142,7 +143,7 @@ function startGame(){
 function draw(){
     if(restart){
         soundPlay = false;
-        winS.stop();
+        //winS.stop();
         startGame();
         lives=3;
     }
@@ -237,7 +238,7 @@ function keyReleased(){
 function win(){
     if(flagPole.isReached && foundItems.length == numberOfElements){
         if(!soundPlay){
-            winS.play()
+            //winS.play()
             soundPlay = true;
         }
         push();
@@ -253,7 +254,7 @@ function win(){
 function fail(){
     if(lives <= 0){
         if(!soundPlay){
-            KO.play();
+            //KO.play();
             soundPlay=true;
         }
         push();
@@ -300,16 +301,16 @@ function drawGameChar(){
         }
         
         if(gameChar_y> 576 || EnemyPlayer){
-            deathS.play();
+            //deathS.play();
             startGame();
-            sound.stop();
+            //sound.stop();
         }
         
     
         if(isPlummeting && gameChar_y >= floorPos_y  &&!winB ){
             jump = true;
             if(!isFallingC){
-            jumpSound.play();
+            //jumpSound.play();
             }
         }
         
@@ -652,7 +653,7 @@ function checkCanyon(canyon){
     if(gameChar_world_x < canyon.x_pos*canyon.width + 150 && gameChar_world_x > canyon.x_pos*canyon.width+60 && gameChar_y>=floorPos_y){
         isFallingC = true;
         gameChar_y++; 
-        sound.play();
+        //sound.play();
     }
 }
 function renderFlagPole(x, y){
@@ -719,7 +720,7 @@ function checkCollectable(t_collectable){
         if(foundItems.indexOf(t_collectable)<0){
             foundItems.push(t_collectable);
             game_score++;
-            item.play();
+            //item.play();
         }
     }
 }
@@ -840,10 +841,10 @@ function checkEnemy(enemy){
         enemy.IsKilled = true;
         enemy.y_pos+=100;
         enemyKilled.push(enemy);
-        killS.play();   
+        //killS.play();   
     }
     else if(gameChar_world_x >= enemy.x_pos-18 && gameChar_world_x<= enemy.x_pos+20 && gameChar_y>= enemy.y_pos && enemy.IsKilled==false){
         EnemyPlayer = true;
-        deathS.play();
+        //deathS.play();
     }
 }
